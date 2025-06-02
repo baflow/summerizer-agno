@@ -12,7 +12,7 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 FROM python:3.12-slim
 
 # Ustawienie katalogu roboczego
-WORKDIR /
+WORKDIR /app
 
 # Skopiuj zainstalowane pakiety z buildera
 COPY --from=builder /root/.local /root/.local
