@@ -21,8 +21,8 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 # Utwórz użytkownika aplikacji
-RUN useradd -m appuser && \
-    chown -R appuser:appuser /app
+# RUN useradd -m appuser && \
+#     chown -R appuser:appuser /app
 
 # Ustawienie zmiennych środowiskowych
 ENV PYTHONUNBUFFERED=1
