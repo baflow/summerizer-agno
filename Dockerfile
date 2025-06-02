@@ -39,4 +39,4 @@ COPY --chown=appuser:appuser . .
 EXPOSE 8001
 
 # Uruchomienie aplikacji
-CMD ["uvicorn", "summerizer:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4", "--timeout-keep-alive", "60"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4", "--timeout-keep-alive", "60"]
