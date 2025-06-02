@@ -13,15 +13,7 @@ basic_agent = Agent(
 )
 
 def create_app():
-    app: FastAPIApp = FastAPIApp(agent=basic_agent)
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=False,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-    return app
+    app: FastAPIApp = FastAPIApp(agent=basic_agent).get_app()
 
 
 # Async router by default (use_async=True)

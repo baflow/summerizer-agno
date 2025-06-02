@@ -33,7 +33,7 @@ ENV PYTHONPATH=/app
 COPY --chown=appuser:appuser . .
 
 # Przełącz na użytkownika appuser
-USER appuser
+# USER appuser
 
 # Port, na którym działa aplikacja
 EXPOSE 8001
