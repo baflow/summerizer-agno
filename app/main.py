@@ -24,4 +24,4 @@ app = create_app()
 
 if __name__ == "__main__":
     # Assumes script is `basic_app.py`; update if different.
-    serve_fastapi_app("app.main:app", port=8001, reload=True)
+    serve_fastapi_app("main:app", port=8001, reload=True)
