@@ -22,12 +22,12 @@ ENV PATH=/root/.local/bin:$PATH
 
 # Utwórz użytkownika aplikacji
 RUN useradd -m appuser && \
-    chown -R appuser:appuser /app
+    chown -R appuser:appuser /
 
 # Ustawienie zmiennych środowiskowych
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/app/app
 
 # Skopiuj kod źródłowy
 COPY --chown=appuser:appuser . .
