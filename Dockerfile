@@ -27,7 +27,7 @@ RUN useradd -m appuser && \
 # Ustawienie zmiennych środowiskowych
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONPATH=/app/app
+ENV PYTHONPATH=/app
 
 # Skopiuj kod źródłowy
 COPY --chown=appuser:appuser . .
