@@ -12,7 +12,7 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 FROM python:3.12-slim
 
 # Ustawienie katalogu roboczego
-WORKDIR /app/app
+WORKDIR /
 
 # Skopiuj zainstalowane pakiety z buildera
 COPY --from=builder /root/.local /root/.local
@@ -22,7 +22,7 @@ ENV PATH=/root/.local/bin:$PATH
 
 # Utwórz użytkownika aplikacji
 RUN useradd -m appuser && \
-    chown -R appuser:appuser /
+    chown -R appuser:appuser /app
 
 # Ustawienie zmiennych środowiskowych
 ENV PYTHONUNBUFFERED=1
