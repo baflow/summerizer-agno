@@ -13,11 +13,11 @@ basic_agent = Agent(
 )
 
 def create_app():
-    app: FastAPIApp = FastAPIApp(agent=basic_agent).get_app()
+    app: FastAPIApp = FastAPIApp(agent=basic_agent)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
-        allow_credentials=True,
+        allow_credentials=False,
         allow_methods=["*"],
         allow_headers=["*"],
     )
