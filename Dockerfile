@@ -12,7 +12,7 @@ RUN pip install --user --no-cache-dir -r requirements.txt
 FROM python:3.12-slim
 
 # Ustawienie katalogu roboczego
-WORKDIR /app
+WORKDIR /app/app
 
 # Skopiuj zainstalowane pakiety z buildera
 COPY --from=builder /root/.local /root/.local
@@ -39,4 +39,4 @@ COPY --chown=appuser:appuser . .
 EXPOSE 8001
 
 # Uruchomienie aplikacji
-CMD ["uvicorn", "app.summerizer:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4", "--timeout-keep-alive", "60"]
+CMD ["uvicorn", "summerizer:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4", "--timeout-keep-alive", "60"]
