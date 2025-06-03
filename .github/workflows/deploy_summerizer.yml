@@ -33,7 +33,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT || '22' }}
           password: ${{ 'sks123' }}
-          source: "app/main.py,requirements.txt"
+          source: "app/summerizer.py,requirements.txt"
           target: "/srv/app/summerizer"
 
       - name: SSH and Run Script
