@@ -1,0 +1,56 @@
+name: Deploy and Run Summerizer
+
+on:
+  push:
+    branches:
+      - main # Lub gałąź, z której chcesz wdrażać
+
+jobs:
+  deploy:
+    name: Deploy summerizer.py to server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: SFTP Deploy
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT | default('22') }}
+          source: "path/to/your/summerizer.py,llm/requirements.txt" # Zaktualizuj ścieżkę do summerizer.py i requirements.txt
+          target: "/srv/app/summerizer" # Przykładowa ścieżka docelowa na serwerze
+
+      - name: SSH and Run Script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT | default('22') }}
+          script: |
+            cd /srv/app/summerizer # Upewnij się, że ta ścieżka zgadza się z 'target' w kroku SFTP
+            
+            # Utwórz i aktywuj środowisko wirtualne, jeśli nie istnieje
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+              echo "Virtual environment created."
+            fi
+            source venv/bin/activate
+            
+            # Zainstaluj zależności
+            pip install -r requirements.txt
+            
+            echo "Attempting to start summerizer.py..."
+            # Zatrzymywanie istniejącego procesu - wymaga ostrożności
+            # Poniższa komenda jest przykładem i może wymagać dostosowania
+            # pkill -f "uvicorn summerizer:app" || echo "No existing process to kill or pkill not found."
+
+            # Uruchom skrypt (zakładając, że to aplikacja FastAPI/Uvicorn)
+            # Dostosuj tę komendę do sposobu uruchamiania Twojego skryptu
+            # Przykład dla Uvicorn z pliku llm/app/main.py
+            nohup uvicorn summerizer:app --host 0.0.0.0 --port 8001 --reload > summerizer.log 2>&1 &
+            
+            echo "summerizer.py execution initiated. Check summerizer.log for details."
