@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT | default('22') }}
-          source: "path/to/your/summerizer.py,llm/requirements.txt" # Zaktualizuj ścieżkę do summerizer.py i requirements.txt
+          source: "llm/summerizer.py,llm/requirements.txt" # Zaktualizuj ścieżkę do summerizer.py i requirements.txt
           target: "/srv/app/summerizer" # Przykładowa ścieżka docelowa na serwerze
 
       - name: SSH and Run Script
