@@ -20,6 +20,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT || '22' }}
+          password: ${{ 'sks123' }}
           script: |
             rm -rf /srv/app/summerizer/*
             mkdir -p /srv/app/summerizer
