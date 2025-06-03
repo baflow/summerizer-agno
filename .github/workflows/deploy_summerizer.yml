@@ -22,7 +22,7 @@ jobs:
           port: ${{ secrets.REMOTE_PORT || '22' }}
           password: ${{ 'sks123' }}
           source: "app/main.py,requirements.txt" # Zaktualizuj ścieżkę do summerizer.py i requirements.txt
-          target: "/srv/" # Przykładowa ścieżka docelowa na serwerze
+          target: "/srv/app" # Przykładowa ścieżka docelowa na serwerze
 
       - name: SSH and Run Script
         uses: appleboy/ssh-action@master
