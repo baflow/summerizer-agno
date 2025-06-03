@@ -20,6 +20,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT || '22' }}
+          password: ${{ 'sks123' }}
           source: "app/main.py,requirements.txt" # Zaktualizuj ścieżkę do summerizer.py i requirements.txt
           target: "/srv/app/summerizer" # Przykładowa ścieżka docelowa na serwerze
 
@@ -30,6 +31,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.REMOTE_PORT || '22' }}
+          password: ${{ 'sks123' }}
           script: |
             cd /srv/app/summerizer # Upewnij się, że ta ścieżka zgadza się z 'target' w kroku SFTP
             
