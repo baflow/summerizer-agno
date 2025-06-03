@@ -12,15 +12,7 @@ basic_agent = Agent(
     markdown=True,
 )
 
-def create_app():
-    app: FastAPIApp = FastAPIApp(agent=basic_agent).get_app()
-
-
-# Async router by default (use_async=True)
-app = create_app()
-
-# For synchronous router:
-# app = FastAPIApp(agent=basic_agent).get_app(use_async=False)
+app = FastAPIApp(agent=basic_agent).get_app()
 
 if __name__ == "__main__":
     # Assumes script is `basic_app.py`; update if different.
