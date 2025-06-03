@@ -3,6 +3,7 @@ from agno.app.fastapi.app import FastAPIApp
 from agno.app.fastapi.serve import serve_fastapi_app
 from agno.models.openrouter import OpenRouter
 from pydantic import BaseModel, Field
+from textwrap import dedent
 
 class Summary(BaseModel):
     summary: str = Field(..., description="Transcription summary in markdown format")
