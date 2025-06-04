@@ -3,12 +3,7 @@ from agno.app.fastapi.app import FastAPIApp
 from agno.app.fastapi.serve import serve_fastapi_app
 from agno.models.openrouter import OpenRouter
 from pydantic import BaseModel, Field
-from typing import Optional
 from textwrap import dedent
-
-class MessageInput(BaseModel):
-    message: str
-    stream: bool = False
 
 class Summary(BaseModel):
     summary: str = Field(..., description="Transcription summary in markdown format")
@@ -23,7 +18,7 @@ basic_agent = Agent(
     markdown=False,
     response_model=Summary,
     use_json_mode=True,
-    debug_mode=True,
+    debug_mode=debug_mode,
     description=dedent("""\
             You are text transcription agent, an advanced AI Agent specializing in Summarization of text from audio files.
         """),
@@ -76,15 +71,6 @@ Sources
         """),
 )
 
-app = FastAPIApp(agent=basic_agent, input_model=MessageInput).get_app()
+app = FastAPIApp(agent=basic_agent).get_app()
 
-# Dodanie niestandardowej obsługi żądań
-@app.post("/v1/run")
-async def process_message(input_data: MessageInput):
-    # Przekazanie wiadomości do agenta
-    response = await basic_agent.run(input_data.message)
-    return response
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("summerizer:app", host="0.0.0.0", port=8001, reload=True)
+serve_fastapi_app("summerizer:app", port=8001, reload=True)
