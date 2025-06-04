@@ -5,6 +5,9 @@ from agno.models.openrouter import OpenRouter
 from pydantic import BaseModel, Field
 from textwrap import dedent
 
+from agno.memory.v2 import Memory
+
+
 class Summary(BaseModel):
     summary: str = Field(..., description="Transcription summary in markdown format")
     topic: str = Field(..., description="Main topic of the transcription")
@@ -16,6 +19,7 @@ basic_agent = Agent(
     num_history_responses=3,
     add_datetime_to_instructions=True,
     markdown=False,
+    memory=Memory(),
     response_model=Summary,
     use_json_mode=True,
     debug_mode=True,
@@ -69,6 +73,7 @@ OUTPUT EXAMPLE
 Sources
 \
         """),
+    storage=SqliteAgentStorage(db_path="tmp/agent_storage.db")
 )
 
 app = FastAPIApp(agent=basic_agent).get_app()
