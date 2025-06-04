@@ -18,7 +18,7 @@ basic_agent = Agent(
     markdown=False,
     response_model=Summary,
     use_json_mode=True,
-    debug_mode=debug_mode,
+    debug_mode=True,
     description=dedent("""\
             You are text transcription agent, an advanced AI Agent specializing in Summarization of text from audio files.
         """),
