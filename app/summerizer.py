@@ -60,11 +60,11 @@ Your task is to create a summary note from the transcription of recorded speech 
 
 OUTPUT EXAMPLE
 {
-  "summary": "# Ulga w bólu zęba\n\nPlanowane działania w celu złagodzenia bólu zęba:\n\n*   Przygotowanie kompresu z wacika nasączonego alkoholem.\n*   Umieszczenie wacika w bolącej okolicy, mające na celu odkażenie miejsca i zapobieżenie stanowi zapalnemu.\n\nAutor wyraża nadzieję, że metoda okaże się skuteczna, tak jak to miało miejsce w przeszłości.",
+  "summary": "Przygotowanie kompresu z wacika nasączonego alkoholem.\n*   Umieszczenie wacika w bolącej okolicy, mające na celu odkażenie miejsca i zapobieżenie stanowi zapalnemu.\n\nAutor wyraża nadzieję, że metoda okaże się skuteczna, tak jak to miało miejsce w przeszłości.",
   "topic": "Ulga w bólu zęba"
 }
 
-+ **IMPORTANT**: Return *only and exclusively* the note text in JSON format. Do not add any introductions, comments, explanations, or any text other than the note itself and the list of key points under the note.
++ **IMPORTANT**: Return *only and exclusively* the note text in JSON format. Do not add any introductions, comments, explanations, or any text other than the note itself and the list of key points under the note. Summary field should not contain topic. Topic should be in separate field.
 
 Sources
 \
